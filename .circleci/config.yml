@@ -9,10 +9,13 @@ jobs:
   build:
     docker:
       # the base image can run most needed actions with orbs
-      - image: "cimg/node:18.6.0-browsers"
+      - image: "cimg/base:stable"
     steps:
       - node/install
+      - node/install-yarn:
+          version: 1.22.18
       - checkout
+      - run: yarn
       # install dependencies in both apps
       - run:
           name: hello
