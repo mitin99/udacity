@@ -1,7 +1,8 @@
 version: 2.1
 orbs:
   # orgs contain basc recipes and reproducible actions (install node, aws, etc.)
-  node: circleci/node@4.1.0
+  node: circleci/node@5.0.2
+  eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@1.3.1
 
   # different jobs are calles later in the workflows sections
@@ -15,8 +16,9 @@ jobs:
       - node/install-yarn:
           version: 1.22.18
       - checkout
-      - run: yarn
+      - aws-cli/setup
       # install dependencies in both apps
+      - run: yarn
       - run:
           name: hello
           command: |
@@ -37,3 +39,7 @@ jobs:
           name: Back-End Build
           command: |
             npm run backend:build
+      - run:
+          name: Deploy App
+          command: |
+            npm run frontend:deploy 
