@@ -1,4 +1,4 @@
-const api = process.env.REACT_APP_CONTACTS_API_URL || 'udacity-test-dev.us-east-1.elasticbeanstalk.com'
+const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://udacity-test-dev.us-east-1.elasticbeanstalk.com'
 
 let token = localStorage.token
 
